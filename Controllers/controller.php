@@ -1,52 +1,38 @@
 <?
 class Controller{
 
-	public $resultLocation;
-	public $resultUser;
-	public $resultTimePunch;
+	public function getLocationByID($locationID){
+		$this->locationID = $locationID;
 
-	public function controllerLocation($locationEndpoint){
-		$this->locationEndpoint = $locationEndpoint;
-
-		$locationJson 		= file_get_contents($this->locationEndpoint);
-		$locationDecode 	= json_decode($locationJson,true);
-
-		foreach ($locationDecode as $location) {
-			$resultLocation[] = new LocationClass($location);
-		}
-
-		$modelLocation = new Model();
-		$modelLocation->modelLocation($resultLocation);
+		$getLocationByID = new Model();
+		$getLocationByID = $getLocationByID->getLocationByID($this->locationID);
+		return $getLocationByID;
 	}
 
-	public function controllerUser($userEndpoint){
-		$this->userEndpoint = $userEndpoint;
+	public function getUserByID($userID){
+		$this->userID = $userID;
 
-		$userJson 		= file_get_contents($this->userEndpoint);
-		$userDecode 	= json_decode($userJson,true);
-
-		foreach ($userDecode as $userID) {
-			foreach ($userID as $user) {
-				$resultUser[] = new UserClass($user);
-			}			
-		}
-
-		$modelUser = new Model();
-		$modelUser->modelUser($resultUser);
+		$getUserByID = new Model();
+		$getUserByID = $getUserByID->getUserByID($this->userID);
+		return $getUserByID;
 	}
 
-	public function controllerTimePunch($timePunchEndpoint){
-		$this->timePunchEndpoint = $timePunchEndpoint;
+	public function getTimePunchByID($userID,$locationID){
+		$this->userID 		= $userID;
+		$this->locationID 	= $locationID;
 
-		$timePunchJson 		= file_get_contents($this->timePunchEndpoint);
-		$timePunchDecode 	= json_decode($timePunchJson,true);
+		$getTimePunchByID = new Model();
+		$getTimePunchByID = $getTimePunchByID->getTimePunchByID($this->userID,$this->locationID);
+		return $getTimePunchByID;
+	}
 
-		foreach ($timePunchDecode as $timePunch) {
-			$resultTimePunch[] = new TimePunchClass($timePunch);
-		}
+	public function getTotalWorkedHours($userID,$locationID){
+		$this->userID 		= $userID;
+		$this->locationID 	= $locationID;
 
-		$modelTimePunch = new Model();
-		$modelTimePunch->modelTimePunch($resultTimePunch);
+		$getTotalWorkedHours = new Model();
+		$getTotalWorkedHours = $getTotalWorkedHours->calcWorkedHours($this->userID,$this->locationID);
+		return $getTotalWorkedHours;
 	}
 }
 ?>

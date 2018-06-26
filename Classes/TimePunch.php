@@ -10,10 +10,6 @@ class TimePunchClass{
 	public $created;
 	public $modified;
 
-	public $clockedStart;
-	public $clockedEnd;
-	public $diffHours;
-
 	public function __construct($timePunchArray){
 		$this->id 			= $timePunchArray['id'];
 		$this->userId 		= $timePunchArray['userId'];
@@ -23,11 +19,6 @@ class TimePunchClass{
 		$this->hourlyWage 	= $timePunchArray['hourlyWage'];
 		$this->created 		= $timePunchArray['created'];
 		$this->modified 	= $timePunchArray['modified'];
-
-		$this->clockedStart = strtotime($this->clockedIn);
-		$this->clockedEnd 	= strtotime($this->clockedOut);
-
-		$this->diffHours 	= $this->clockedEnd - $this->clockedStart;
 	}
 }
 ?>

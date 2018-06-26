@@ -13,9 +13,20 @@ require('Views/view.php');
 
 $view = new View();
 
-$view->viewLocation(LOCATION_ENDPOINT);
-$view->viewUser(USERS_ENDPOINT);
-$view->viewTimePunch(TIME_PUNCHES_ENDPOINT);
+$returnLocation = $view->returnLocation($locationID);
+for ($i=0; $i < count($returnLocation); $i++) { 
+	echo 'Location ID: '.$returnLocation[$i]->id."\n";
+}
+
+$returnUser = $view->returnUser($userID);
+for ($i=0; $i < count($returnUser); $i++) { 
+	echo 'User ID: '.$returnUser[$i]->id."\n";
+}
+
+$returnTotalWorkedHours = $view->returnTotalWorkedHours($userID,$locationID);
+if ($returnTotalWorkedHours) {
+	echo 'Total Worked Hours: '.$returnTotalWorkedHours;
+}
 
 $view->returnView();
 ?>

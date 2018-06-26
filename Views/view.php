@@ -2,34 +2,54 @@
 class View{
 
 	public function returnView(){
-		require(MAIN_VIEW);
+		$view = MAIN_VIEW;
+		require($view);
 	}
 
-	public function viewLocation($locationEndpoint) {
-		$this->locationEndpoint = $locationEndpoint;
-		
-		if (isset($this->locationEndpoint)) {
-			$controllerLocation = new Controller();
-			$controllerLocation->controllerLocation($this->locationEndpoint);
+	public function returnLocation($locationID){
+		$this->locationID = $locationID;
+
+		if (isset($this->locationID)) {
+			$returnLocation = new Controller();
+			$returnLocation = $returnLocation->getLocationByID($this->locationID);
 		}
+
+		return $returnLocation;
 	}
 
-	public function viewUser($userEndpoint) {
-		$this->userEndpoint = $userEndpoint;
-		
-		if (isset($this->userEndpoint)) {
-			$controllerUser = new Controller();
-			$controllerUser->controllerUser($this->userEndpoint);
+	public function returnUser($userID){
+		$this->userID = $userID;
+
+		if (isset($this->userID)) {
+			$returnUser = new Controller();
+			$returnUser = $returnUser->getUserByID($this->userID);
 		}
+
+		return $returnUser;
 	}
 
-	public function viewTimePunch($timePunchEndpoint) {
-		$this->timePunchEndpoint = $timePunchEndpoint;
-		
-		if (isset($this->timePunchEndpoint)) {
-			$controllerTimePunch = new Controller();
-			$controllerTimePunch->controllerTimePunch($this->timePunchEndpoint);
+	public function returnTimePunch($userID,$locationID){
+		$this->userID 		= $userID;
+		$this->locationID 	= $locationID;
+
+		if (isset($this->userID) && isset($this->locationID)) {
+			$returnTimePunch = new Controller();
+			$returnTimePunch = $returnTimePunch->getTimePunchByID($this->userID,$this->locationID);
 		}
+
+		return $returnTimePunch;
+	}
+
+	public function returnTotalWorkedHours($userID,$locationID){
+		$this->userID 		= $userID;
+		$this->locationID 	= $locationID;
+
+		if (isset($this->userID) && isset($this->locationID)) {
+			$returnTotalWorkedHours = new Controller();
+			$returnTotalWorkedHours = $returnTotalWorkedHours->getTotalWorkedHours($this->userID,$this->locationID);
+		}
+
+		return $returnTotalWorkedHours;
 	}
 }
 ?>
