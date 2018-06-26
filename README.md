@@ -1,4 +1,4 @@
-# 7shifts - VanHack Hackathon 2018
+# VanHackathon 2018 | 7shifts Code Challenge
 Repository created for delivering the VanHack Hackathon 2018 for 7shifts code challenge.
 
 ##### Required:
@@ -9,4 +9,4 @@ Repository created for delivering the VanHack Hackathon 2018 for 7shifts code ch
 - Access via browser: localhost/7shifts
 
 ##### Note:
-This project only covers the instanciation of the classes that will receive the JSON data, and process it to a simple calculation of the total hours worked by a single employee defined for tests only.
+This project only covers the instantiation of the classes that will receive the JSON data, and process it to a simple calculation of the total hours worked by a single employee defined for tests only.
